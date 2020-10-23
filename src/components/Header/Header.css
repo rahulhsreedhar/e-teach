@@ -1,9 +1,5 @@
-body {
-    background-color: grey;
-}
-
 .navbar {
-    background: linear-gradient(to right, rgb(0, 0, 0), rgb(68, 21, 21));
+    background: linear-gradient(to right, rgb(238, 238, 238), rgb(101, 137, 255));
     height: 80px;
     display: flex;
     justify-content: center;
@@ -37,19 +33,19 @@ body {
 
 .nav-menu li:hover {
     height: 95%;
-    border-bottom: 5px solid rgb(219, 194, 194);
-    border-radius: 5%;
+    border-bottom: 5px solid white;
+    border-radius: 0%;
 }
 
 .nav-menu li :active {
-    background-color: rgb(68, 21, 21);
+    background-color: rgb(200, 212, 238);
 }
 
 .nav-menu a {
     width: 100%;
     justify-content: center;
     text-decoration: none;
-    color: #b0b885;
+    color: #000000;
     height: 100%;
     display: flex;
     align-items: center;
@@ -61,13 +57,17 @@ body {
 
 @media screen and (max-width: 960px) {
     .navbar {
-        background: black;
+        background: rgb(101, 137, 255);
+    }
+    .navbar-logo {
+        z-index: 99;
     }
     .menu-icon {
         display: block;
         position: absolute;
         top: 20%;
         right: 0px;
+        z-index: 99;
     }
     .menu-icon .MuiSvgIcon-root {
         font-size: 300%
@@ -76,18 +76,20 @@ body {
         flex-direction: column;
         width: 100%;
         height: 50vh;
-        top: 80px;
+        /* top: 80px; */
         position: absolute;
-        left: -100%;
+        /* left: -100%; */
+        top: -1000px;
         opacity: 1;
         transition: all .5s ease;
-        background: linear-gradient(to bottom, rgb(0, 0, 0), rgb(68, 21, 21));
+        background: linear-gradient(to right, rgb(238, 238, 238), rgb(101, 137, 255));
     }
     .nav-menu.active {
-        left: 0px;
+        /* left: 0px; */
+        top: 0px;
         opacity: 1;
         z-index: 1;
-        background: linear-gradient(to bottom, rgb(0, 0, 0), rgb(68, 21, 21));
+        background: linear-gradient(to top, rgb(238, 238, 238), rgb(101, 137, 255));
         transition: all .5s ease;
     }
     .nav-menu li {

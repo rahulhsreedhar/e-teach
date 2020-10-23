@@ -1,0 +1,21 @@
+.home {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    width: 80%;
+}
+.main-content{
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.main-text-wrapper{
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.main-text-wrapper .live-desc{
+    text-align: center;
+}

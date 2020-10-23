@@ -21,7 +21,7 @@ const Header = () => {
       <nav className="navbar">
         <div className="navbar-container">
 
-          <Link to={`${baseURL}/home`}
+          <Link to={`${baseURL}/`}
             className="navbar-logo"
 
           >
@@ -37,21 +37,25 @@ const Header = () => {
             onClick={appDrawerClick}>
 
 
-            ${openDrawer ? <CloseIcon style={{ color: "grey" }}></CloseIcon> :
+            {openDrawer ? <CloseIcon style={{ color: "grey" }}></CloseIcon> :
               <DehazeIcon style={{ color: "grey" }}></DehazeIcon>}
 
           </div>
 
           <ul className={openDrawer ? 'nav-menu active' : 'nav-menu'}>
             <li>
-              <Link to={`${baseURL}/home`}>Home
+              <Link to={`${baseURL}/`}>Home
+                </Link>
+            </li> 
+            <li>
+              <Link to={`${baseURL}/subjects`}>Subjects
                 </Link>
             </li>
             <li>
-              <Link to={`${baseURL}/home`}>Contact us</Link>
+              <Link to={`${baseURL}/contactus`}>Contact us</Link>
             </li>
             <li>
-              <Link to={`${baseURL}/home`}>About us</Link>
+              <Link to={`${baseURL}/aboutus`}>About us</Link>
             </li>
           </ul>
 
