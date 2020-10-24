@@ -44,18 +44,18 @@ const Header = () => {
 
           <ul className={openDrawer ? 'nav-menu active' : 'nav-menu'}>
             <li>
-              <Link to={`${baseURL}/`}>Home
-                </Link>
-            </li> 
-            <li>
-              <Link to={`${baseURL}/subjects`}>Subjects
+              <Link to={`${baseURL}/`} onClick={appDrawerClick}>Home
                 </Link>
             </li>
             <li>
-              <Link to={`${baseURL}/contactus`}>Contact us</Link>
+              <Link to={`${baseURL}/subjects`} onClick={appDrawerClick}>Subjects
+                </Link>
             </li>
             <li>
-              <Link to={`${baseURL}/aboutus`}>About us</Link>
+              <Link to={`${baseURL}/contactus`} onClick={appDrawerClick}>Contact us</Link>
+            </li>
+            <li>
+              <Link to={`${baseURL}/aboutus`} onClick={appDrawerClick}>About us</Link>
             </li>
           </ul>
 

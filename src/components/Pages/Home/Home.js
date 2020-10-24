@@ -1,8 +1,27 @@
 import React from "react";
 import './Home.css'
+import Button from '@material-ui/core/Button';
+
 const Home = () => {
+    // window.onscroll = function () {
+    //     const l = document.getElementById("test");
+    //     console.log(l.getBoundingClientRect().y);
+    //     if (l.getBoundingClientRect().y < 685) {
+    //         l.classList.add('test2')
+    //     }
+    //     if (l.getBoundingClientRect().y > 685) {
+    //         if (l.classList.contains('test2')) {
+    //             l.classList.remove('test2')
+    //         }
+    //     }
+
+
+    // };
+
+    const myFunction = () => {
+    }
     return (
-        <div className="home">
+        <div className="home" onScroll={myFunction}>
 
             <section className="intro">
                 <div className="intro_left">
@@ -13,14 +32,21 @@ const Home = () => {
                     from experienced online tutors.</div>
                 </div>
                 <div className="intro_right">
-                    <img alt="image" src="https://sportworldschool.com/wp-content/uploads/2020/09/teaching-support.jpg" width="500px" height="350px" />
+                    <div className="image">
+                    </div>
+
                 </div>
 
+            </section>
+            <section className="banner">
+
+                <span>     Avail our online tuition from great tutors</span>
+                <Button variant="contained">Avail now</Button>
 
             </section>
-
-
+            <section className="quotes"></section>
         </div>
+
     )
 }
 
