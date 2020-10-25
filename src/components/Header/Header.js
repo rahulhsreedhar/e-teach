@@ -14,17 +14,29 @@ const Header = () => {
     setOpenDrawer(!openDrawer)
   }
 
+  window.onscroll = function () {
+    const home = document.getElementsByClassName("home")[0];
+    const nav = document.getElementsByClassName("navbar")[0];
+    if (home.getBoundingClientRect().top < 60) {
+      nav.classList.add('scroll')
+    }
 
+    if (home.getBoundingClientRect().top > 60) {
+      if (nav.classList.contains('scroll')) {
+        nav.classList.remove('scroll')
+      }
+    }
+
+
+  };
   return (
 
-    <>
+    <div className="navbar-wrapper">
       <nav className="navbar">
         <div className="navbar-container">
 
           <Link to={`${baseURL}/`}
-            className="navbar-logo"
-
-          >
+            className="navbar-logo" >
             <MenuBookIcon fontSize="large"
               onClick={appDrawerClick}
               style={{ fill: "grey" }}></MenuBookIcon>
@@ -63,7 +75,7 @@ const Header = () => {
       </nav>
 
 
-    </>
+    </div>
 
   )
 }
