@@ -1,0 +1,98 @@
+ .subject-page {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+ }
+
+ .subject-page h1 {
+     padding-top: 2%;
+     color: #34a386;
+ }
+
+ .subject-page .select {
+     width: 100%;
+     display: flex;
+     height: 75px;
+     justify-content: center;
+     margin-top: 3%;
+     justify-content: space-evenly;
+ }
+
+ .select label {
+     color: #00000069;
+ }
+
+ .subject-page .select .subjects, .subject-page .select .standard {
+     display: flex;
+     flex-direction: column;
+     text-align: center;
+     justify-content: space-around;
+     width: 35%;
+ }
+
+ .select select {
+     padding: 4px;
+     background-color: #34a386;
+     border: 2px solid grey;
+     border-radius: 10px;
+     color: #ffffff;
+     font-size: 105%;
+ }
+
+ .subject-page .tutor-list {
+     margin-top: 5%;
+     overflow-y: auto;
+     width: 80%;
+     text-align: center;
+     display: flex;
+     flex-direction: column;
+ }
+
+ .tutor-list .row {
+     display: flex;
+     width: 100%;
+     height: 200px;
+     box-shadow: inset 0px 0px 4px 0px #34a386;
+     padding: 1%;
+ }
+
+ .tutor-list .row .image img {
+     background-size: cover;
+     width: 100%;
+     height: 100%;
+     background-repeat: no-repeat;
+     background-position: center;
+     object-fit: contain;
+ }
+
+ .tutor-list .image {
+     width: 30%;
+     height: 100%;
+     border-right: 1px solid rgb(97, 97, 97);
+ }
+
+ .tutor-list .contents {
+     width: 70%;
+ }
+
+ .subject-page button {
+     margin-top: 5%;
+     width: 25%;
+     background-color: #878787;
+ }
+
+ @media screen and (max-width: 960px) {
+     .tutor-list .row .image {
+         width: 60%;
+     }
+     .tutor-list .row {
+         height: 150px;
+     }
+     .subject-page button {
+         width: 55%;
+     }
+
+     .subject-page button:hover {
+        background-color: #878787;
+    }
+ }

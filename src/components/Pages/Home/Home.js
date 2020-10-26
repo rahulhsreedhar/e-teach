@@ -6,20 +6,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import SentimentVerySatisfiedIcon from '@material-ui/icons/SentimentVerySatisfied';
 import HowToRegIcon from '@material-ui/icons/HowToReg';
 const Home = () => {
-    // window.onscroll = function () {
-    //     const l = document.getElementById("test");
-    //     console.log(l.getBoundingClientRect().y);
-    //     if (l.getBoundingClientRect().y < 685) {
-    //         l.classList.add('test2')
-    //     }
-    //     if (l.getBoundingClientRect().y > 685) {
-    //         if (l.classList.contains('test2')) {
-    //             l.classList.remove('test2')
-    //         }
-    //     }
 
-
-    // };
 
     const myFunction = () => {
     }
@@ -42,7 +29,7 @@ const Home = () => {
 
                 <section className="banner">
 
-                    <span>     Avail our online tuition from great tutors</span>
+                    <span>Avail our online tuition from great tutors</span>
                     <Button variant="contained">Avail now</Button>
 
 
