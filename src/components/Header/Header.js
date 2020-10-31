@@ -15,8 +15,8 @@ const Header = () => {
   }
 
   window.onscroll = function () {
-    const home = document.getElementsByClassName("home")[0];
-    const nav = document.getElementsByClassName("navbar")[0];
+    const home = document.querySelector(".body-section");
+    const nav = document.querySelector(".navbar");
     if (home.getBoundingClientRect().top < 60) {
       nav.classList.add('scroll')
     }

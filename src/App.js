@@ -20,18 +20,18 @@ function App() {
   return (
     <Router>
       <div className="App">
-       
+
         <Header></Header>
+        <div className="body-section">
+          <Switch>
 
-        <Switch>
+            <Route path={`${baseURL}/`} exact component={() => <Home />} />
+            <Route path={`${baseURL}/contactus`} component={Contactus} />
+            <Route path={`${baseURL}/aboutus`} component={Aboutus} />
+            <Route path={`${baseURL}/subjects`} component={() => <Subjects database={database} />} />
 
-          <Route path={`${baseURL}/`} exact component={() => <Home />} />
-          <Route path={`${baseURL}/contactus`} component={Contactus} />
-          <Route path={`${baseURL}/aboutus`} component={Aboutus} />
-          <Route path={`${baseURL}/subjects`} component={() => <Subjects  database={database} />} />
-
-        </Switch>
-
+          </Switch>
+        </div>
 
       </div>
     </Router >

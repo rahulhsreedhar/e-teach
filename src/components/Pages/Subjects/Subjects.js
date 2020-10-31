@@ -15,11 +15,14 @@ class Subjects extends Component {
         this.state = {
             subjectList: [],
             selectedSub: '',
+            selectedSyllabus: '',
+            syllabusList: ['state', 'cbse'],
             classList: '',
             selectedClass: '',
             tutorList: [],
             filteredTutors: [],
-            load: false
+            load: false,
+            error: false
         }
     }
     handleLoader = (flag) => {
@@ -28,7 +31,7 @@ class Subjects extends Component {
     fetchSubjectList = () => {
         this.handleLoader(true);
 
-        this.database.ref('subjectList').once('value')
+        this.database.ref('school_subjectList').once('value')
             .then((dataSnapshot) => {
                 this.setState({ subjectList: dataSnapshot.val() });
                 this.fetchclassesList();
@@ -38,12 +41,20 @@ class Subjects extends Component {
 
 
     fetchclassesList = () => {
-        this.database.ref('classes').once('value')
-            .then((dataSnapshot) => {
-                this.setState({ classList: dataSnapshot.val() });
-                this.getTutors();
+        this.setState({
+            classList: {
+                5: "class 5",
+                6: "class 6",
+                7: "class 7",
+                8: "class 8",
+                9: "class 9",
+                10: "class 10",
+                11: "class 11",
+                12: "class 12"
+            }
+        });
+        this.getTutors();
 
-            });
     }
     componentDidMount() {
         this.fetchSubjectList();
@@ -60,16 +71,26 @@ class Subjects extends Component {
 
     findMyTutor() {
         this.handleLoader(true);
+        const tutorsList = this.state.tutorList.filter(tut => {
+            if (tut
+                .school_subjects
+                .classes[this.state.selectedSyllabus][this.state.selectedClass].includes(parseInt(this.state.selectedSub)
+                )) {
+                return tut;
+            }
+        })
         this.setState({
-            filteredTutors: this.state.tutorList.filter(tut => {
-                if (tut.subject.includes(this.state.selectedSub)
-                    && tut.classes.includes(this.state.selectedClass)) {
-                    return tut;
-                }
-            })
-        });
-      setTimeout(()=>{ this.handleLoader(false)},2000);
+            filteredTutors: tutorsList
+        })
+
+        if (tutorsList < 1) this.setState({ error: true })
+        else this.setState({ error: false })
+
+        setTimeout(() => { this.handleLoader(false) }, 2000);
+        console.log(this.state.filteredTutors)
+
     }
+
     render() {
         return (
             <>
@@ -82,34 +103,58 @@ class Subjects extends Component {
                         <div className="subjects">
                             <label >Select Subject </label>
                             <select
-                                value={this.selectedSub}
-                                onChange={e => this.setState({ selectedSub: e.target.value })}
+                                value={this.state.selectedSub}
+                                onChange={e => {
+                                    this.setState({ selectedSub: e.target.value })
+                                }}
                                 style={{ width: '100%' }}
                             ><option value={''}>{'Select'}</option>
-                                {this.state.subjectList ? this.state.subjectList.map((sub, index) => {
-                                    return <option key={index} value={sub}>{sub.toUpperCase()}</option>
+                                {this.state.subjectList ? Object.keys(
+                                    this.state.subjectList).map((subKey) => {
+                                        return <option key={subKey} value={subKey}>{this.state.subjectList[subKey].toUpperCase()}</option>
 
-                                }) : ''}
+                                    }) : ''}
                             </select>
                         </div>
                         <div className="standard">
-                            <label >Select standard</label>
+                            <label >Select Class</label>
                             <select
                                 value={this.selectedClass}
                                 onChange={e => this.setState({ selectedClass: e.target.value })}
                                 style={{ width: '100%' }}
                             ><option value={''}>{'Select'}</option>
-                                {this.state.classList ? this.state.classList.map((sub, index) => {
-                                    return <option key={index} value={sub}>{sub.toUpperCase()}</option>
+                                {this.state.classList ? Object.keys(
+                                    this.state.classList).map(subKey => {
+                                        return <option key={subKey} value={subKey}>{this.state.classList[subKey].toUpperCase()}</option>
 
-                                }) : ''}
+                                    }) : ''}
                             </select>
                         </div>
+                        <div className="syllabus">
+                            <label >Select Syllabus</label>
+                            <select
+                                value={this.state.selectedSyllabus}
+                                onChange={e => this.setState({ selectedSyllabus: e.target.value })}
+                                style={{ width: '100%' }}
+                            ><option value={''}>{'Select'}</option>
+                                {this.state.syllabusList ?
+                                    this.state.syllabusList.map((syllabus, index) => {
+                                        return <option key={index}
+                                            value={syllabus}>
+                                            {syllabus.toUpperCase()}
+                                        </option>
+
+                                    }) : ''}
+                            </select>
+                        </div>
+
                     </section>
-                    <Button disabled={!(this.state.selectedSub && this.state.selectedClass)}
+                    <Button disabled={!(this.state.selectedSub && this.state.selectedClass && this.state.selectedSyllabus)}
                         onClick={() => this.findMyTutor()}>Search</Button>
                     {!(this.state.selectedSub && this.state.selectedClass) ?
-                        <span>Select Subject and Class</span> : ''}
+                        <span className="warning">Select Subject, Class and Syllabus</span> : ''}
+
+
                     <section className="tutor-list">
                         {this.state.filteredTutors.map((tut, index) => {
                             return <div className="row" key={index}>
@@ -117,13 +162,24 @@ class Subjects extends Component {
                                     <img alt="tutor image not found" src={tut.photo}></img>
                                 </div>
                                 <div className="contents">
+                                    <div>
+                                        <span className="label"> Name :</span>
+                                        <span className="value">  {tut.name.toUpperCase()}</span>
 
-                                    {tut.name.toUpperCase()}
+                                    </div>
+                                    <div>
+                                        <span className="label"> Qualification :</span>
+                                        <span className="value">    {tut.qualification.toUpperCase()}</span>
+                                    </div>
+
                                 </div>
                             </div>
 
                         })}
 
+                        {this.state.error ?
+                            <span className="warning"> Sorry Tutor Not available now for this selection. Please contact us and we will arrange tutor for you.
+                           </span> : ''}
 
                     </section>
                 </div>

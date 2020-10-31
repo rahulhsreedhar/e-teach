@@ -22,12 +22,12 @@
      color: #00000069;
  }
 
- .subject-page .select .subjects, .subject-page .select .standard {
+ .subject-page .select .subjects, .subject-page .select .standard, .subject-page .select .syllabus {
      display: flex;
      flex-direction: column;
      text-align: center;
      justify-content: space-around;
-     width: 35%;
+     width: 20%;
  }
 
  .select select {
@@ -46,6 +46,7 @@
      text-align: center;
      display: flex;
      flex-direction: column;
+     margin-bottom: 2%;
  }
 
  .tutor-list .row {
@@ -73,6 +74,25 @@
 
  .tutor-list .contents {
      width: 70%;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-evenly;
+     padding-left: 1%;
+
+ }
+
+ .tutor-list .contents div {
+     display: flex;
+ }
+
+ .tutor-list .contents div .label {
+     text-align: start;
+     min-width: 30%;
+ }
+
+ .tutor-list .contents div .value {
+     text-align: start;
+     min-width: 70%;
  }
 
  .subject-page button {
@@ -81,6 +101,10 @@
      width: 25%;
      background-color: #878787;
  }
+.warning{
+    color: brown;
+    font-size: large;
+}
 
  @media screen and (max-width: 960px) {
      .tutor-list .row .image {
@@ -92,8 +116,7 @@
      .subject-page button {
          width: 55%;
      }
-
      .subject-page button:hover {
-        background-color: #878787;
-    }
+         background-color: #878787;
+     }
  }
