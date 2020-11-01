@@ -151,7 +151,7 @@ class Subjects extends Component {
                     </section>
                     <Button disabled={!(this.state.selectedSub && this.state.selectedClass && this.state.selectedSyllabus)}
                         onClick={() => this.findMyTutor()}>Search</Button>
-                    {!(this.state.selectedSub && this.state.selectedClass) ?
+                    {!(this.state.selectedSub && this.state.selectedClass &&   this.state.selectedSyllabus) ?
                         <span className="warning">Select Subject, Class and Syllabus</span> : ''}
 
 
